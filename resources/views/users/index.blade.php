@@ -1,10 +1,10 @@
 <x-back-layout>
     <x-slot name="header">
         <h1 class="text-gray-700 text-2xl">
-            {{ __('Users Roles') }}
+            {{ __('Users List') }}
         </h1>
-        <x-link href="{{ route('dashboard.admin.roles.create') }}">
-            {{ __('New Role') }}
+        <x-link href="{{ route('dashboard.admin.users.create') }}">
+            {{ __('New User') }}
         </x-link>
     </x-slot>
 
@@ -21,33 +21,29 @@
                     <x-slot name="head">
                         <tr>
                             <x-table.th>{{ __('ID') }}</x-table.th>
+                            <x-table.th>{{ __('Name') }}</x-table.th>
                             <x-table.th>{{ __('Role') }}</x-table.th>
-                            <x-table.th>{{ __('Permission') }}</x-table.th>
                             <x-table.th></x-table.th>
                         </tr>
                     </x-slot>
 
                     <x-slot name="body">
-                        @foreach($roles as $role)
+                        @foreach($users as $user)
                             <tr>
-                                <x-table.td>{{ $role->id }}</x-table.td>
-                                <x-table.td>{{ $role->name }}</x-table.td>
+                                <x-table.td>{{ $user->id }}</x-table.td>
+                                <x-table.td>{{ $user->name }}</x-table.td>
                                 <x-table.td>
-                                    @forelse($role->permissions as $permission)
-                                        <x-badge class="mt-2 inline-block">{{ $permission->name }}</x-badge>
-                                    @empty
-                                        <x-badge class="border border-rose-400">{{ __('No permissions') }}</x-badge>
-                                    @endforelse
+                                    <x-badge>{{ $user->role->name }}</x-badge>
                                 </x-table.td>
                                 <x-table.td>
                                     <div class="flex justify-end">
                                         <div class="w-4 mr-2 transform hover:text-sky-600 hover:scale-110">
-                                            <a href="{{ route('dashboard.admin.roles.edit', $role->id ) }}"
+                                            <a href="{{ route('dashboard.admin.users.edit', $user->id ) }}"
                                                class="fa-regular fa-pen-to-square"></a>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-rose-600 hover:scale-110">
                                             <form
-                                                action="{{ route('dashboard.admin.roles.destroy', $role->id) }}"
+                                                action="{{ route('dashboard.admin.users.destroy', $user->id) }}"
                                                 method="post"
                                                 onsubmit="return confirm('Are you sure?')">
                                                 @csrf

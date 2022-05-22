@@ -18,6 +18,12 @@
         </x-sidebar-link>
 
         @if(auth()->user()->hasRole('admin'))
+        <x-sidebar-link href="{{ route('dashboard.admin.users.index') }}"
+                        :active="request()->routeIs('dashboard.admin.users.index')">
+            <i class="fa-regular fa-user text-lg"></i>
+            <span class="mx-3">{{ __('Users') }}</span>
+        </x-sidebar-link>
+
         <x-sidebar-link href="{{ route('dashboard.admin.roles.index') }}"
                         :active="request()->routeIs('dashboard.admin.roles.index')">
             <i class="fa-solid fa-user-gear text-lg"></i>

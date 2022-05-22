@@ -9350,6 +9350,18 @@ select{
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
+.border-rose-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(253 164 175 / var(--tw-border-opacity));
+}
+.border-rose-500{
+  --tw-border-opacity: 1;
+  border-color: rgb(244 63 94 / var(--tw-border-opacity));
+}
+.border-rose-400{
+  --tw-border-opacity: 1;
+  border-color: rgb(251 113 133 / var(--tw-border-opacity));
+}
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -9734,6 +9746,10 @@ select{
 .ring-white{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+.ring-rose-300{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(253 164 175 / var(--tw-ring-opacity));
 }
 .ring-opacity-5{
   --tw-ring-opacity: 0.05;
