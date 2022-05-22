@@ -1,10 +1,10 @@
 <x-back-layout>
     <x-slot name="header">
         <h1 class="text-gray-700 text-2xl">
-            {{ __('Users Roles') }}
+            {{ __('Users Permissions') }}
         </h1>
-        <x-link href="{{ route('dashboard.admin.roles.create') }}">
-            {{ __('New Role') }}
+        <x-link href="{{ route('dashboard.admin.permissions.create') }}">
+            {{ __('New Permission') }}
         </x-link>
     </x-slot>
 
@@ -21,31 +21,28 @@
                     <x-slot name="head">
                         <tr>
                             <x-table.th>{{ __('ID') }}</x-table.th>
-                            <x-table.th>{{ __('Role') }}</x-table.th>
                             <x-table.th>{{ __('Permission') }}</x-table.th>
+                            <x-table.th>{{ __('Role') }}</x-table.th>
                             <x-table.th></x-table.th>
                         </tr>
                     </x-slot>
 
                     <x-slot name="body">
-                        @foreach($roles as $role)
+                        @foreach($permissions as $permission)
                             <tr>
-                                <x-table.td>{{ $role->id }}</x-table.td>
-                                <x-table.td>{{ $role->name }}</x-table.td>
-                                <x-table.td>
-                                    <x-badge>{{ 'todo' }}</x-badge>
-                                </x-table.td>
+                                <x-table.td>{{ $permission->id }}</x-table.td>
+                                <x-table.td>{{ $permission->name }}</x-table.td>
+                                <x-table.td>{{ 'TODO' }}</x-table.td>
                                 <x-table.td>
                                     <div class="flex justify-end">
                                         <div class="w-4 mr-2 transform hover:text-sky-600 hover:scale-110">
-                                            <a href="{{ route('dashboard.admin.roles.edit', $role->id ) }}"
+                                            <a href="{{ route('dashboard.admin.permissions.edit', $permission->id ) }}"
                                                class="fa-regular fa-pen-to-square"></a>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-rose-600 hover:scale-110">
                                             <form
-                                                action="{{ route('dashboard.admin.roles.destroy', $role->id) }}"
-                                                method="post"
-                                                onsubmit="return confirm('Are you sure?')">
+                                                action="{{ route('dashboard.admin.permissions.destroy', $permission->id) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit">

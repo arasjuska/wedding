@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::query()->whereNotIn('name', ['admin'])->get();
+        $permissions = Permission::all();
 
-        return view('roles.index', compact('roles'));
+        return view('permissions.index', compact('permissions'));
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        return view('permissions.create');
     }
 
     /**
@@ -39,12 +39,12 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|min:3|unique:roles'
+            'name' => 'required|min:3|unique:permissions'
         ]);
 
-        Role::create($validated);
+        Permission::create($validated);
 
-        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role created successfully');
+        return redirect()->route('dashboard.admin.permissions.index')->with('success', 'Permission created successfully');
     }
 
     /**
@@ -64,9 +64,9 @@ class RoleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return view('roles.edit', compact('role'));
+        return view('permissions.edit', compact('permission'));
     }
 
     /**
@@ -76,19 +76,19 @@ class RoleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Permission $permission)
     {
         $validated = $request->validate([
             'name' => [
                 'required',
                 'min:3',
-                Rule::unique('roles')->ignore($role)
+                Rule::unique('permissions')->ignore($permission)
             ]
         ]);
 
-        $role->update($validated);
+        $permission->update($validated);
 
-        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role updated succesfully');
+        return redirect()->route('dashboard.admin.permissions.index')->with('success', 'Permission updated successfully');
     }
 
     /**
@@ -97,10 +97,8 @@ class RoleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        $role->delete();
-
-        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role deleted succesfully');
+        //
     }
 }
