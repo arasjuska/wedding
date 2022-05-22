@@ -53,7 +53,7 @@ Run the database seeder and you're done
 
     php artisan migrate:refresh
 
-###Login to the system
+### Login to the system
 
     email: admin@admin.com
     password: password
