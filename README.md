@@ -55,8 +55,6 @@ Run the database seeder and you're done
 
 ##Login to the system
 
-Login to the system like Admin
-
     email: admin@admin.com
     password: password
 
