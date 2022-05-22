@@ -48,6 +48,50 @@
                                 </form>
                             </div>
                         </div>
+
+                        <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                                <div class="text-gray-600">
+                                    <p class="font-medium text-lg">{{ __('Add permission to the role') }}</p>
+                                    <p class="my-2">{{ __('Role permissions:') }}</p>
+                                    @foreach($role->permissions as $permission)
+                                    <x-badge class="mt-2 inline-block">{{ $permission->name }}</x-badge>
+                                    @endforeach
+                                </div>
+
+                                <form action="{{ route('dashboard.admin.roles.permissions', $role->id) }}" method="post" class="lg:col-span-2">
+                                    @csrf
+                                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                                        <div class="md:col-span-5">
+                                            <label for="permissions">{{ __('Name') }}</label>
+                                            <select name="permissions[]" id="permissions"
+                                                    class="border mt-1 rounded px-4 w-full bg-gray-50"
+                                                    multiple>
+                                            @foreach($permissions as $permission)
+                                                <option value="{{ $permission->id }}"
+                                                        @selected($role->hasPermission($permission->name))>
+                                                    {{ $permission->name }}</option>
+                                            @endforeach
+                                            </select>
+                                            @error('name')
+                                            <div class="my-1">
+                                                <span class="text-xs text-red-600">{{ $message }}</span>
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="md:col-span-5 text-right mt-4">
+                                            <div class="inline-flex items-end">
+                                                <button
+                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

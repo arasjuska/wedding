@@ -12,10 +12,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard', 'as' => 'dashboar
     Route::view('/', 'dashboard');
 
     // Admin routes
-    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function (){
+    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::post('/roles/{role}/permissions', [RoleController::class, 'assignPermissions'])->name('roles.permissions');
         Route::resource('/roles', RoleController::class);
         Route::resource('/permissions', PermissionController::class);
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

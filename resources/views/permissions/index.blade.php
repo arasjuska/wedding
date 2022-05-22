@@ -42,7 +42,8 @@
                                         <div class="w-4 mr-2 transform hover:text-rose-600 hover:scale-110">
                                             <form
                                                 action="{{ route('dashboard.admin.permissions.destroy', $permission->id) }}"
-                                                method="post">
+                                                method="post"
+                                                onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit">

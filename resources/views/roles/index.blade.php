@@ -33,7 +33,9 @@
                                 <x-table.td>{{ $role->id }}</x-table.td>
                                 <x-table.td>{{ $role->name }}</x-table.td>
                                 <x-table.td>
-                                    <x-badge>{{ 'todo' }}</x-badge>
+                                    @foreach($role->permissions as $permission)
+                                        <x-badge class="mt-2 inline-block">{{ $permission->name }}</x-badge>
+                                    @endforeach
                                 </x-table.td>
                                 <x-table.td>
                                     <div class="flex justify-end">

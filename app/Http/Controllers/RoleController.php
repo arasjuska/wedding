@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -66,7 +67,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        $permissions = Permission::all();
+
+        return view('roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -88,7 +91,7 @@ class RoleController extends Controller
 
         $role->update($validated);
 
-        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role updated succesfully');
+        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role updated successfully');
     }
 
     /**
@@ -101,6 +104,13 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role deleted succesfully');
+        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Role deleted successfully');
+    }
+
+    public function assignPermissions(Request $request, Role $role)
+    {
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('dashboard.admin.roles.index')->with('success', 'Permission added');
     }
 }

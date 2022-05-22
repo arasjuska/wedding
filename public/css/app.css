@@ -9257,8 +9257,21 @@ select{
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
+.space-y-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .overflow-hidden{
   overflow: hidden;
+}
+.overflow-visible{
+  overflow: visible;
 }
 .overflow-x-auto{
   overflow-x: auto;
@@ -10016,6 +10029,9 @@ select{
   .sm\:block{
     display: block;
   }
+  .sm\:inline-block{
+    display: inline-block;
+  }
   .sm\:flex{
     display: flex;
   }
@@ -10081,6 +10097,9 @@ select{
   }
   .md\:col-span-1{
     grid-column: span 1 / span 1;
+  }
+  .md\:inline{
+    display: inline;
   }
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));

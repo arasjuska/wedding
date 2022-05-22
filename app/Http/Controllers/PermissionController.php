@@ -97,8 +97,10 @@ class PermissionController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+
+        return redirect()->route('dashboard.admin.permissions.index')->with('success', 'Permission deleted successfully');
     }
 }
