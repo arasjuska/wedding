@@ -45,7 +45,7 @@ You can now access the server at http://localhost:8000
 
 ## Database seeding
 
-**Populate the database with seed data with relationships which includes users, articles and etc. This can help you to quickly start testing the api or couple a frontend and start using it with ready content.**
+**Populate the database with seed data with relationships which includes users, articles and etc. This can help you to quickly start using it with ready content.**
 
 Run the database seeder and you're done
 
